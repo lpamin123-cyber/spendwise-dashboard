@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpendWise Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <h2>SpendWise</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active">Dashboard</a>
+                <a href="#" class="nav-item">Transactions</a>
+                <a href="#" class="nav-item">Analytics</a>
+                <a href="#" class="nav-item">Budgets</a>
+                <a href="#" class="nav-item">Settings</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-title">
+                    <h1>Dashboard Overview</h1>
+                    <p>Welcome back, user!</p>
+                </div>
+                <div class="header-profile">
+                    <span class="notification-badge" title="Notifications">🔔</span>
+                    <div class="avatar">U</div>
+                </div>
+            </header>
+
+            <!-- Category Cards Grid (6 Categories) -->
+            <section class="cards-grid">
+                <div class="card" tabindex="0">
+                    <div class="card-header">
+                        <h3>Food & Dining</h3>
+                        <span class="card-icon">🍔</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="amount">$450.00</p>
+                        <span class="status warning">85% budget</span>
+                    </div>
+                </div>
+
+                <div class="card" tabindex="0">
+                    <div class="card-header">
+                        <h3>Transport</h3>
+                        <span class="card-icon">🚗</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="amount">$120.00</p>
+                        <span class="status success">40% budget</span>
+                    </div>
+                </div>
+
+                <div class="card" tabindex="0">
+                    <div class="card-header">
+                        <h3>Rent & Housing</h3>
+                        <span class="card-icon">🏠</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="amount">$1,200.00</p>
+                        <span class="status info">On track</span>
+                    </div>
+                </div>
+
+                <div class="card" tabindex="0">
+                    <div class="card-header">
+                        <h3>Entertainment</h3>
+                        <span class="card-icon">🎬</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="amount">$95.00</p>
+                        <span class="status success">30% budget</span>
+                    </div>
+                </div>
+
+                <div class="card" tabindex="0">
+                    <div class="card-header">
+                        <h3>Savings</h3>
+                        <span class="card-icon">💰</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="amount">$500.00</p>
+                        <span class="status success">Goal reached</span>
+                    </div>
+                </div>
+
+                <div class="card" tabindex="0">
+                    <div class="card-header">
+                        <h3>Utilities</h3>
+                        <span class="card-icon">⚡</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="amount">$210.00</p>
+                        <span class="status warning">70% budget</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
