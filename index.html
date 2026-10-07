@@ -1,110 +1,309 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpendWise Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpendWise Dashboard</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="dashboard-container">
-        <!-- Sidebar Navigation -->
-        <aside class="sidebar">
-            <div class="sidebar-brand">
-                <h2>SpendWise</h2>
-            </div>
-            <nav class="sidebar-nav">
-                <a href="#" class="nav-item active">Dashboard</a>
-                <a href="#" class="nav-item">Transactions</a>
-                <a href="#" class="nav-item">Analytics</a>
-                <a href="#" class="nav-item">Budgets</a>
-                <a href="#" class="nav-item">Settings</a>
-            </nav>
-        </aside>
+  <div class="dashboard-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-brand">
 
-        <!-- Main Content Area -->
-        <main class="main-content">
-            <!-- Header -->
-            <header class="dashboard-header">
-                <div class="header-title">
-                    <h1>Dashboard Overview</h1>
-                    <p>Welcome back, user!</p>
-                </div>
-                <div class="header-profile">
-                    <span class="notification-badge" title="Notifications">🔔</span>
-                    <div class="avatar">U</div>
-                </div>
-            </header>
+cat << 'EOF' > style.css
+/* -------------------------------------------------------------
+   3. CSS CUSTOM PROPERTIES (THEME VARIABLES)
+------------------------------------------------------------- */
+:root {
+  --brand-color: #2563eb;
+  --accent-color: #10b981;
+  --bg-color: #f8fafc;
+  --surface-color: #ffffff;
+  --primary-text: #0f172a;
+  --secondary-text: #64748b;
+  --border-color: #e2e8f0;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+  --transition-speed: 200ms;
+}
 
-            <!-- Category Cards Grid (6 Categories) -->
-            <section class="cards-grid">
-                <div class="card" tabindex="0">
-                    <div class="card-header">
-                        <h3>Food & Dining</h3>
-                        <span class="card-icon">🍔</span>
-                    </div>
-                    <div class="card-body">
-                        <p class="amount">$450.00</p>
-                        <span class="status warning">85% budget</span>
-                    </div>
-                </div>
+/* STRETCH GOAL: Dark Theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --brand-color: #3b82f6;
+    --accent-color: #34d399;
+    --bg-color: #0f172a;
+    --surface-color: #1e293b;
+    --primary-text: #f8fafc;
+    --secondary-text: #94a3b8;
+    --border-color: #334155;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  }
+}
 
-                <div class="card" tabindex="0">
-                    <div class="card-header">
-                        <h3>Transport</h3>
-                        <span class="card-icon">🚗</span>
-                    </div>
-                    <div class="card-body">
-                        <p class="amount">$120.00</p>
-                        <span class="status success">40% budget</span>
-                    </div>
-                </div>
+/* Global Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-                <div class="card" tabindex="0">
-                    <div class="card-header">
-                        <h3>Rent & Housing</h3>
-                        <span class="card-icon">🏠</span>
-                    </div>
-                    <div class="card-body">
-                        <p class="amount">$1,200.00</p>
-                        <span class="status info">On track</span>
-                    </div>
-                </div>
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--primary-text);
+  line-height: 1.5;
+}
 
-                <div class="card" tabindex="0">
-                    <div class="card-header">
-                        <h3>Entertainment</h3>
-                        <span class="card-icon">🎬</span>
-                    </div>
-                    <div class="card-body">
-                        <p class="amount">$95.00</p>
-                        <span class="status success">30% budget</span>
-                    </div>
-                </div>
+/* -------------------------------------------------------------
+   2. CSS GRID: OVERALL PAGE LAYOUT
+------------------------------------------------------------- */
+.dashboard-container {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "sidebar main";
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: 64px 1fr;
+  min-height: 100vh;
+}
 
-                <div class="card" tabindex="0">
-                    <div class="card-header">
-                        <h3>Savings</h3>
-                        <span class="card-icon">💰</span>
-                    </div>
-                    <div class="card-body">
-                        <p class="amount">$500.00</p>
-                        <span class="status success">Goal reached</span>
-                    </div>
-                </div>
+/* -------------------------------------------------------------
+   FLEXBOX: HEADER COMPONENTS
+------------------------------------------------------------- */
+.header {
+  grid-area: header;
+  background-color: var(--surface-color);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+}
 
-                <div class="card" tabindex="0">
-                    <div class="card-header">
-                        <h3>Utilities</h3>
-                        <span class="card-icon">⚡</span>
-                    </div>
-                    <div class="card-body">
-                        <p class="amount">$210.00</p>
-                        <span class="status warning">70% budget</span>
-                    </div>
-                </div>
-            </section>
-        </main>
-    </div>
-</body>
-</html>
+.header-brand,
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.header-brand h1 {
+  font-size: 1.25rem;
+  color: var(--brand-color);
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  background-color: var(--brand-color);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+/* -------------------------------------------------------------
+   FLEXBOX: SIDEBAR NAVIGATION
+------------------------------------------------------------- */
+.sidebar {
+  grid-area: sidebar;
+  background-color: var(--surface-color);
+  border-right: 1px solid var(--border-color);
+  padding: 1.5rem 1rem;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nav-item a {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: var(--secondary-text);
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.nav-item.active a,
+.nav-item a:hover {
+  background-color: var(--brand-color);
+  color: #ffffff;
+}
+
+/* -------------------------------------------------------------
+   MAIN CONTENT & CARD GRID
+------------------------------------------------------------- */
+.main-content {
+  grid-area: main;
+  padding: 2rem;
+}
+
+.overview-section h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* -------------------------------------------------------------
+   5. CARD MICRO-INTERACTIONS & FLEXBOX LAYOUT
+------------------------------------------------------------- */
+.card {
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  outline: none;
+  /* Smooth interaction lasting under 250ms */
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.card-icon {
+  font-size: 1.5rem;
+}
+
+.card-title {
+  font-weight: 600;
+  color: var(--secondary-text);
+  font-size: 0.95rem;
+}
+
+.card-amount {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--primary-text);
+}
+
+.card-subtitle {
+  font-size: 0.85rem;
+  color: var(--secondary-text);
+  margin-top: 0.25rem;
+}
+
+/* Hover & Focus State Animations */
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+cat << 'EOF' > style.css
+/* -------------------------------------------------------------
+   3. CSS CUSTOM PROPERTIES (THEME VARIABLES)
+------------------------------------------------------------- */
+:root {
+  --brand-color: #2563eb;
+  --accent-color: #10b981;
+  --bg-color: #f8fafc;
+  --surface-color: #ffffff;
+  --primary-text: #0f172a;
+  --secondary-text: #64748b;
+  --border-color: #e2e8f0;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+  --transition-speed: 200ms;
+}
+
+/* STRETCH GOAL: Dark Theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --brand-color: #3b82f6;
+    --accent-color: #34d399;
+    --bg-color: #0f172a;
+    --surface-color: #1e293b;
+    --primary-text: #f8fafc;
+    --secondary-text: #94a3b8;
+    --border-color: #334155;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Global Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--primary-text);
+  line-height: 1.5;
+}
+
+/* -------------------------------------------------------------
+   2. CSS GRID: OVERALL PAGE LAYOUT
+------------------------------------------------------------- */
+.dashboard-container {
+  display: grid;
+  grid-template-areas:
+    "header header"
+
+cat << 'EOF' > README.md
+# SpendWise Dashboard Shell
+
+A responsive financial dashboard layout shell built using modern CSS Grid, Flexbox, and CSS Custom Properties.
+
+## Overview & Architecture
+
+### 1. Overall Page Structure (CSS Grid)
+The primary layout is created using CSS Grid on `.dashboard-container`. It uses named grid areas (`header`, `sidebar`, `main`) to explicitly define component placements:
+- **Header:** Spans full width across the top (`64px` height).
+- **Sidebar:** Fixed width column (`240px`).
+- **Main Area:** Takes up remaining space (`1fr`).
+
+### 2. Internal Component Layout (Flexbox)
+Flexbox is utilized inside components to handle alignment and direction:
+- **Header:** Uses `display: flex` with `justify-content: space-between` to separate the logo and user profile.
+- **Sidebar Navigation:** Uses `flex-direction: column` for vertical stacking on desktop, switching to `flex-direction: row` for horizontal scrolling on smaller viewports.
+- **Dashboard Cards:** Uses Flexbox internally to organize icon/title headers and content rows.
+
+### 3. Theme System (CSS Variables)
+Color tokens are declared on the `:root` pseudo-class:
+- `--brand-color`: Primary blue accent used for interactive highlights and branding.
+- `--accent-color`: Supporting brand element color.
+- `--bg-color` & `--surface-color`: Background layers establishing visual hierarchy.
+- `--primary-text` & `--secondary-text`: High and medium contrast text colors.
+
+### 4. Responsiveness
+A `@media (max-width: 768px)` media query collapses the grid into a single-column layout:
+- Switches `.dashboard-container` grid-template-areas to single vertical stacking.
+- Converts navigation menu from vertical list to horizontal scroll bar.
+
+### 5. Micro-interactions
+Card hover and focus states feature a micro-interaction:
+- `transform: translateY(-4px)` elevates the element smoothly.
+- CSS `transition` configured to **200ms** (below the 250ms threshold).
+- Applies equally to keyboard navigation (`:focus-visible`) and mouse hover (`:hover`).
+
+### 6. Dark Theme (Stretch Goal)
+Implemented via `@media (prefers-color-scheme: dark)` which dynamically redefines the `:root` variables to support system-level dark mode preferences without extra JavaScript.
